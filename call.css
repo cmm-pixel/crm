@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f2f4f7;
+  margin: 0;
+  padding: 30px;
+}
+
+.form-wrapper {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+}
+
+.form-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fafafa;
+  text-align: center;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #c9a227;
+  font-weight: 700;
+}
+
+.form-header p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+form {
+  padding: 25px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row .field {
+  flex: 1;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+/* ⭐ Show star ONLY on required fields */
+label:has(+ input:required)::after,
+label:has(+ select:required)::after,
+label:has(+ textarea:required)::after {
+  content: " *";
+  color: #d93025;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 9px 10px;
+  font-size: 14px;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #0078d4;
+  outline: none;
+  background: #fdfefe;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+button {
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 11px 36px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #005ea6;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Rectification</title>
+  <link rel="stylesheet" href="rectification.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+
+  <div class="form-header">
+    <h2>Booking Rectification</h2>
+    <p>Salesforce vs Client Comparison</p>
+  </div>
+
+  <!-- ===== PARALLEL CONTAINER ===== -->
+  <div class="parallel-container">
+
+    <!-- ===== SALESFORCE FORM ===== -->
+    <div class="section">
+      <h3>As Per Salesforce</h3>
+
+      <form id="salesforceForm">
+
+        <div class="field">
+          <label>Booking ID</label>
+          <input type="text"
+                 id="bookingId"
+                 name="bookingId"
+                 placeholder="B-000000"
+                 pattern="B-[0-9]{6}"
+                 maxlength="8"
+                 required>
+        </div>
+
+        <div class="field">
+          <label>RM Name</label>
+          <input type="text" name="rmName" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Tower</label>
+            <select class="tower" name="tower" required>
+              <option value="">Select</option>
+              <option value="TAPI">TAPI</option>
+              <option value="AMAZON">AMAZON</option>
+              <option value="DANUBE">DANUBE</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Wing</label>
+            <select class="wing" name="wing" required disabled>
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Unit No.</label>
+            <input type="text" name="unit" required>
+          </div>
+
+          <div class="field">
+            <label>Type</label>
+            <select name="type" required>
+              <option value="">Select</option>
+              <option>1 BHK</option>
+              <option>2 BHK</option>
+              <option>3 BHK</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Booking Date</label>
+          <input type="date" name="bookingDate" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Applicant Name</label>
+            <input type="text" name="applicantName" required>
+          </div>
+
+          <div class="field">
+            <label>Client Contact</label>
+            <input type="tel" name="contact" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email ID</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Total</label>
+            <input type="number" name="total" required>
+          </div>
+
+          <div class="field">
+            <label>AV</label>
+            <input type="number" name="av" required>
+          </div>
+
+          <div class="field">
+            <label>IC</label>
+            <input type="number" name="ic" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Payment Plan</label>
+          <input type="text" name="paymentPlan" required>
+        </div>
+
+        <div class="field">
+          <label>Remark</label>
+          <textarea name="remark" rows="3" required></textarea>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ===== CLIENT FORM ===== -->
+    <div class="section">
+      <h3>As Per Client</h3>
+
+      <form id="clientForm">
+
+        <div class="field">
+          <label>RM Name</label>
+          <input type="text" name="rmName" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Tower</label>
+            <select class="tower" name="tower" required>
+              <option value="">Select</option>
+              <option value="TAPI">TAPI</option>
+              <option value="AMAZON">AMAZON</option>
+              <option value="DANUBE">DANUBE</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Wing</label>
+            <select class="wing" name="wing" required disabled>
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Unit No.</label>
+            <input type="text" name="unit" required>
+          </div>
+
+          <div class="field">
+            <label>Type</label>
+            <select name="type" required>
+              <option value="">Select</option>
+              <option>1 BHK</option>
+              <option>2 BHK</option>
+              <option>3 BHK</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Booking Date</label>
+          <input type="date" name="bookingDate" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Applicant Name</label>
+            <input type="text" name="applicantName" required>
+          </div>
+
+          <div class="field">
+            <label>Client Contact</label>
+            <input type="tel" name="contact" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email ID</label>
+          <input type="email" name="email" required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Total</label>
+            <input type="number" name="total" required>
+          </div>
+
+          <div class="field">
+            <label>AV</label>
+            <input type="number" name="av" required>
+          </div>
+
+          <div class="field">
+            <label>IC</label>
+            <input type="number" name="ic" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Payment Plan</label>
+          <input type="text" name="paymentPlan" required>
+        </div>
+
+        <div class="field">
+          <label>Remark</label>
+          <textarea name="remark" rows="3" required></textarea>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- ===== ONE GLOBAL SAVE BUTTON ===== -->
+  <div class="actions">
+    <button id="saveAll">Save Rectification</button>
+  </div>
+
+</div>
+
+<script src="rectification.js"></script>
+
+<script>
+  // Force Booking ID uppercase
+  document.getElementById("bookingId").addEventListener("input", function () {
+    this.value = this.value.toUpperCase();
+  });
+</script>
+
+</body>
+</html>

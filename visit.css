@@ -1,0 +1,247 @@
+/* ===============================
+   GLOBAL RESET & THEME
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #c9a227;
+  --primary-dark: #b18f1f;
+  --accent: #0078d4;
+  --danger: #d93025;
+  --success: #188038;
+  --warning: #f29900;
+  --bg: #f4f6f9;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --muted: #6a737d;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  padding: 30px;
+  color: var(--text);
+}
+
+/* ===============================
+   FORM CONTAINER
+================================ */
+.form-wrapper {
+  max-width: 760px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.form-header {
+  padding: 26px 30px;
+  background: linear-gradient(135deg, #fff9e6, #ffffff);
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.form-header p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ===============================
+   FORM BODY
+================================ */
+form {
+  padding: 30px;
+}
+
+/* ===============================
+   FIELDS
+================================ */
+.field {
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row .field {
+  flex: 1;
+}
+
+/* ===============================
+   LABELS
+================================ */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Required star only if required */
+label[for]::after {
+  content: "";
+}
+
+input:required + label::after,
+select:required + label::after {
+  content: " *";
+  color: var(--danger);
+}
+
+/* ===============================
+   INPUTS & SELECTS & TEXTAREA
+================================ */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+input::placeholder {
+  color: #9aa0a6;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.2);
+}
+
+/* Disabled */
+select:disabled,
+input:disabled,
+textarea:disabled {
+  background: #f1f3f4;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   PAYMENT SECTION
+================================ */
+#paymentSection {
+  border-top: 1px solid #eee;
+  margin-top: 25px;
+  padding-top: 25px;
+  animation: fadeIn 0.3s ease;
+}
+
+#paymentSection h3 {
+  margin-bottom: 20px;
+  color: var(--primary);
+  font-size: 18px;
+}
+
+/* ===============================
+   SELECT OPTION STATUS COLORS
+================================ */
+select option[value="Done"] {
+  color: var(--success);
+}
+
+select option[value="Pending"] {
+  color: var(--warning);
+}
+
+select option[value="Cancelled"] {
+  color: var(--danger);
+}
+
+/* ===============================
+   ACTIONS
+================================ */
+.actions {
+  text-align: center;
+  margin-top: 35px;
+}
+
+button {
+  background: linear-gradient(135deg, var(--primary), #e6c558);
+  color: #ffffff;
+  border: none;
+  padding: 14px 52px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  box-shadow: 0 10px 22px rgba(201, 162, 39, 0.4);
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(201, 162, 39, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  form {
+    padding: 22px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

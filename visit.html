@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Visit Entry</title>
+  <link rel="stylesheet" href="visit.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+
+  <div class="form-header">
+    <h2>Client Visit Entry</h2>
+    <p>Fill visit details carefully</p>
+  </div>
+
+  <form id="visitForm" autocomplete="off">
+
+    <!-- Booking ID + Search -->
+    <div class="field">
+      <label>Booking ID</label>
+
+      <div style="display:flex; gap:10px;">
+        <input type="text"
+               id="bookingId"
+               name="bookingId"
+               placeholder="B-000000"
+               pattern="B-[0-9]{6}"
+               maxlength="8"
+               required>
+
+        <button type="button" id="searchBtn">Search</button>
+      </div>
+
+      <small id="bookingStatus" style="color:#555;"></small>
+    </div>
+
+    <!-- Client Name -->
+    <div class="field">
+      <label>Client Name</label>
+      <input type="text"
+             id="clientName"
+             name="clientName"
+             placeholder="Enter client name"
+             required>
+    </div>
+
+    <!-- Tower & Wing -->
+    <div class="row">
+      <div class="field">
+        <label>Tower</label>
+        <select id="tower" name="tower" required>
+          <option value="">Select</option>
+          <option value="TAPI">TAPI</option>
+          <option value="AMAZON">AMAZON</option>
+          <option value="DANUBE">DANUBE</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Wing</label>
+        <select id="wing" name="wing" required disabled>
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Unit & RM -->
+    <div class="row">
+      <div class="field">
+        <label>Unit</label>
+        <input type="text"
+               id="unit"
+               name="unit"
+               placeholder="e.g. 1203"
+               required>
+      </div>
+
+      <div class="field">
+        <label>RM</label>
+        <select id="rm" name="rm" required>
+          <option value="">Select</option>
+          <option>RM 1</option>
+          <option>RM 2</option>
+          <option>RM 3</option>
+          <option>RM 4</option>
+          <option>RM 5</option>
+          <option>RM 6</option>
+          <option>RM 7</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="field">
+      <label>Date of Visit</label>
+      <input type="date"
+             id="visitDate"
+             name="visitDate"
+             required>
+    </div>
+
+    <!-- Purpose -->
+    <div class="field">
+      <label>Purpose / Note</label>
+      <input type="text"
+             id="purpose"
+             name="purpose"
+             placeholder="Enter purpose"
+             required>
+    </div>
+
+    <!-- Visit Status -->
+    <div class="field">
+      <label>Visit Status</label>
+      <select id="visitStatus" name="visitStatus" required>
+        <option value="">Select</option>
+        <option>Done</option>
+        <option>Pending</option>
+        <option>Cancelled</option>
+      </select>
+    </div>
+
+    <!-- Booking & KYC -->
+    <div class="row">
+      <div class="field">
+        <label>Booking Verified</label>
+        <select id="bookingVerified" name="bookingVerified" required>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>KYC Verified</label>
+        <select id="kycDone" name="kycDone" required>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="field">
+      <label>Payment</label>
+      <select id="payment" name="payment" required>
+        <option value="">Select</option>
+        <option value="Received">Received</option>
+        <option value="Not Received">Not Received</option>
+      </select>
+    </div>
+
+    <!-- ============================= -->
+    <!-- PAYMENT SECTION -->
+    <!-- ============================= -->
+    <div id="paymentSection" style="display:none; margin-top:20px; border-top:1px solid #ddd; padding-top:20px;">
+
+      <h3>Payment Details</h3>
+
+      <!-- Dynamic Payments Will Appear Here -->
+      <div id="paymentsContainer"></div>
+
+      <!-- Add Payment Button -->
+      <div style="margin-top:15px;">
+        <button type="button" id="addPaymentBtn">
+          + Add Another Payment
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Submit -->
+    <div class="actions">
+      <button type="submit" id="submitBtn">Save Visit</button>
+    </div>
+
+  </form>
+</div>
+
+<script src="visit.js"></script>
+
+<script>
+  // Force Booking ID uppercase
+  document.getElementById("bookingId").addEventListener("input", function () {
+    this.value = this.value.toUpperCase();
+  });
+</script>
+
+</body>
+</html>

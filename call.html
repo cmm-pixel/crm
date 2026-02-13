@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily CRM Call Log</title>
+  <link rel="stylesheet" href="call.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+
+  <div class="form-header">
+    <h2>Daily CRM Call Log</h2>
+    <p>Log client call and schedule visit</p>
+  </div>
+
+  <form id="callForm" autocomplete="off">
+
+    <!-- Booking ID + Search -->
+    <div class="field">
+      <label for="bookingId">Booking ID</label>
+
+      <div class="booking-search">
+        <input type="text"
+               id="bookingId"
+               name="bookingId"
+               placeholder="B-000000"
+               pattern="B-[0-9]{6}"
+               maxlength="8">
+
+        <button type="button" id="searchBtn">Search</button>
+      </div>
+
+      <small id="bookingStatus" class="status-text"></small>
+    </div>
+
+    <!-- Client Name -->
+    <div class="field">
+      <label for="clientName">Client Name</label>
+      <input type="text" id="clientName" name="clientName" required>
+    </div>
+
+    <!-- Tower & Wing -->
+    <div class="row">
+      <div class="field">
+        <label for="tower">Tower</label>
+        <input type="text" id="tower" name="tower" required>
+      </div>
+
+      <div class="field">
+        <label for="wing">Wing</label>
+        <input type="text" id="wing" name="wing" required>
+      </div>
+    </div>
+
+    <!-- Unit & RM -->
+    <div class="row">
+      <div class="field">
+        <label for="unit">Unit</label>
+        <input type="text" id="unit" name="unit" required>
+      </div>
+
+      <div class="field">
+        <label for="rm">RM</label>
+        <select id="rm" name="rm" required>
+          <option value="">Select</option>
+          <option value="RM 1">RM 1</option>
+          <option value="RM 2">RM 2</option>
+          <option value="RM 3">RM 3</option>
+          <option value="RM 4">RM 4</option>
+          <option value="RM 5">RM 5</option>
+          <option value="RM 6">RM 6</option>
+          <option value="RM 7">RM 7</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Call Status -->
+    <div class="field">
+      <label for="callStatus">Call Status</label>
+      <select id="callStatus" name="callStatus" required>
+        <option value="">Select</option>
+        <option value="Connected">Connected</option>
+        <option value="Not Answered">Not Answered</option>
+        <option value="Busy">Busy</option>
+        <option value="Call Back Later">Call Back Later</option>
+        <option value="Wrong Number">Wrong Number</option>
+      </select>
+    </div>
+
+    <!-- Call Outcome -->
+    <div class="field">
+      <label for="callSummary">Call Outcome Summary</label>
+      <textarea id="callSummary" name="callSummary" rows="3" required></textarea>
+    </div>
+
+    <!-- Visit Date & Time -->
+    <div class="row">
+      <div class="field">
+        <label for="visitDate">Schedule Visit Date</label>
+        <input type="date" id="visitDate" name="visitDate">
+      </div>
+
+      <div class="field">
+        <label for="visitTime">Schedule Visit Time</label>
+        <select id="visitTime" name="visitTime">
+          <option value="">Select Time</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="actions">
+      <button type="submit" id="submitBtn">Save Call Log</button>
+    </div>
+
+  </form>
+</div>
+
+<script src="call.js"></script>
+
+<script>
+  // Auto uppercase booking ID
+  document.getElementById("bookingId").addEventListener("input", function () {
+    this.value = this.value.toUpperCase();
+  });
+
+  // Auto-generate time slots (9:00 AM to 7:30 PM, 30 min interval)
+  const visitTimeSelect = document.getElementById("visitTime");
+
+  function formatTime(hour, minute) {
+    const ampm = hour >= 12 ? "PM" : "AM";
+    const formattedHour = hour % 12 || 12;
+    return `${formattedHour}:${minute.toString().padStart(2, "0")} ${ampm}`;
+  }
+
+  for (let hour = 11; hour <= 19; hour++) {
+    [0, 30].forEach(minute => {
+      const option = document.createElement("option");
+      option.value = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
+      option.textContent = formatTime(hour, minute);
+      visitTimeSelect.appendChild(option);
+    });
+  }
+</script>
+
+</body>
+</html>

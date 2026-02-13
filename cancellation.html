@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Cancellation</title>
+  <link rel="stylesheet" href="cancellation.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+
+  <div class="form-header">
+    <h2>Booking Cancellation</h2>
+    <p>Enter cancellation details carefully</p>
+  </div>
+
+  <form id="cancellationForm">
+
+    <!-- Booking ID (FIRST & MANDATORY) -->
+    <div class="field">
+      <label>Booking ID</label>
+      <input type="text"
+             id="bookingId"
+             name="bookingId"
+             placeholder="B-000000"
+             pattern="B-[0-9]{6}"
+             maxlength="8"
+             required>
+    </div>
+
+    <!-- RM Name -->
+    <div class="field">
+      <label>RM Name</label>
+      <input type="text" id="rmName" name="rmName" required>
+    </div>
+
+    <!-- Tower & Wing -->
+    <div class="row">
+      <div class="field">
+        <label>Tower</label>
+        <select id="tower" name="tower" required>
+          <option value="">Select</option>
+          <option value="TAPI">TAPI</option>
+          <option value="AMAZON">AMAZON</option>
+          <option value="DANUBE">DANUBE</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Wing</label>
+        <select id="wing" name="wing" required disabled>
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Unit & Type -->
+    <div class="row">
+      <div class="field">
+        <label>Unit No.</label>
+        <input type="text" id="unit" name="unit" required>
+      </div>
+
+      <div class="field">
+        <label>Type</label>
+        <select id="type" name="type" required>
+          <option value="">Select</option>
+          <option>1 BHK</option>
+          <option>2 BHK</option>
+          <option>3 BHK</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dates -->
+    <div class="row">
+      <div class="field">
+        <label>Booking Date</label>
+        <input type="date" id="bookingDate" name="bookingDate" required>
+      </div>
+
+      <div class="field">
+        <label>Cancellation Date</label>
+        <input type="date" id="cancellationDate" name="cancellationDate" required>
+      </div>
+    </div>
+
+    <!-- Applicant Names -->
+    <div class="row">
+      <div class="field">
+        <label>Applicant Name (Primary)</label>
+        <input type="text" id="primaryApplicant" name="primaryApplicant" required>
+      </div>
+
+      <div class="field">
+        <label>Applicant Name (Secondary)</label>
+        <input type="text" id="secondaryApplicant" name="secondaryApplicant">
+      </div>
+    </div>
+
+    <!-- Contact & Email -->
+    <div class="row">
+      <div class="field">
+        <label>Client Contact</label>
+        <input type="tel" id="contact" name="contact" required>
+      </div>
+
+      <div class="field">
+        <label>Email ID</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+    </div>
+
+    <!-- Reason -->
+    <div class="field">
+      <label>Reason for Cancellation</label>
+      <textarea id="reason" name="reason" rows="3" required></textarea>
+    </div>
+
+    <!-- Remark -->
+    <div class="field">
+      <label>Remark</label>
+      <textarea id="remark" name="remark" rows="3" required></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="actions">
+      <button type="submit">Submit Cancellation</button>
+    </div>
+
+  </form>
+</div>
+
+<script src="cancellation.js"></script>
+
+<script>
+  // Force Booking ID uppercase
+  document.getElementById("bookingId").addEventListener("input", function () {
+    this.value = this.value.toUpperCase();
+  });
+</script>
+
+</body>
+</html>
