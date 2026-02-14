@@ -62,7 +62,7 @@ body {
   padding: 28px;
 }
 
-/* ================= SECTION (FORM CARD) ================= */
+/* ================= SECTION ================= */
 .section {
   background: #ffffff;
   border-radius: 12px;
@@ -126,13 +126,13 @@ textarea {
   transition: all 0.2s ease;
 }
 
+textarea {
+  resize: vertical;
+}
+
 input::placeholder,
 textarea::placeholder {
   color: #9aa0a6;
-}
-
-textarea {
-  resize: vertical;
 }
 
 /* Focus */
@@ -151,13 +151,50 @@ select:disabled {
   cursor: not-allowed;
 }
 
-/* ================= ACTIONS ================= */
+/* ================= COPY BUTTON LAYOUT ================= */
+
+.copy-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-wrapper input,
+.copy-wrapper select,
+.copy-wrapper textarea {
+  flex: 1;
+}
+
+/* Small copy button */
+.copy-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 38px;
+}
+
+.copy-btn:hover {
+  background: #005fa3;
+  transform: translateY(-1px);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= MAIN SAVE BUTTON ================= */
 .actions {
   text-align: center;
   margin-top: 28px;
 }
 
-button {
+.actions button {
   background: linear-gradient(135deg, var(--primary), #e6c558);
   color: #ffffff;
   border: none;
@@ -171,12 +208,12 @@ button {
   transition: all 0.25s ease;
 }
 
-button:hover {
+.actions button:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 30px rgba(201, 162, 39, 0.5);
 }
 
-button:active {
+.actions button:active {
   transform: translateY(0);
 }
 
@@ -196,7 +233,7 @@ button:active {
     flex-direction: column;
   }
 
-  button {
+  .actions button {
     width: 100%;
   }
 }
