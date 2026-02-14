@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Rectification</title>
   <link rel="stylesheet" href="rectification.css">
 </head>
@@ -14,65 +15,73 @@
     <p>Salesforce vs Client Comparison</p>
   </div>
 
-  <!-- ===== PARALLEL CONTAINER ===== -->
   <div class="parallel-container">
 
-    <!-- ===== SALESFORCE FORM ===== -->
+    <!-- ================= SALESFORCE SIDE ================= -->
     <div class="section">
       <h3>As Per Salesforce</h3>
 
-      <form id="salesforceForm">
+      <form id="salesforceForm" autocomplete="off">
 
         <div class="field">
           <label>Booking ID</label>
-          <input type="text"
-                 id="bookingId"
-                 name="bookingId"
-                 placeholder="B-000000"
-                 pattern="B-[0-9]{6}"
-                 maxlength="8"
-                 required>
+          <div style="display:flex; gap:10px;">
+            <input type="text"
+                   id="bookingId"
+                   name="bookingId"
+                   placeholder="B-000000"
+                   pattern="B-[0-9]{6}"
+                   maxlength="8"
+                   required>
+            <button type="button" id="searchBtn">Search</button>
+          </div>
+          <small id="bookingStatus"></small>
         </div>
 
         <div class="field">
           <label>RM Name</label>
-          <input type="text" name="rmName" required>
+          <select name="rmName" required>
+            <option value="">Select RM</option>
+            <option>RM 1</option>
+            <option>RM 2</option>
+            <option>RM 3</option>
+            <option>RM 4</option>
+            <option>RM 5</option>
+            <option>RM 6</option>
+            <option>RM 7</option>
+          </select>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Tower</label>
-            <select class="tower" name="tower" required>
-              <option value="">Select</option>
-              <option value="TAPI">TAPI</option>
-              <option value="AMAZON">AMAZON</option>
-              <option value="DANUBE">DANUBE</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Wing</label>
-            <select class="wing" name="wing" required disabled>
-              <option value="">Select</option>
-            </select>
-          </div>
+        <div class="field">
+          <label>Tower</label>
+          <select class="tower" name="tower" required>
+            <option value="">Select</option>
+            <option value="TAPI">TAPI</option>
+            <option value="AMAZON">AMAZON</option>
+            <option value="DANUBE">DANUBE</option>
+          </select>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Unit No.</label>
-            <input type="text" name="unit" required>
-          </div>
+        <div class="field">
+          <label>Wing</label>
+          <select class="wing" name="wing" required disabled>
+            <option value="">Select</option>
+          </select>
+        </div>
 
-          <div class="field">
-            <label>Type</label>
-            <select name="type" required>
-              <option value="">Select</option>
-              <option>1 BHK</option>
-              <option>2 BHK</option>
-              <option>3 BHK</option>
-            </select>
-          </div>
+        <div class="field">
+          <label>Unit No.</label>
+          <input type="text" name="unit" required>
+        </div>
+
+        <div class="field">
+          <label>Type</label>
+          <select name="type" required>
+            <option value="">Select</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+          </select>
         </div>
 
         <div class="field">
@@ -80,16 +89,14 @@
           <input type="date" name="bookingDate" required>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Applicant Name</label>
-            <input type="text" name="applicantName" required>
-          </div>
+        <div class="field">
+          <label>Applicant Name</label>
+          <input type="text" name="applicantName" required>
+        </div>
 
-          <div class="field">
-            <label>Client Contact</label>
-            <input type="tel" name="contact" required>
-          </div>
+        <div class="field">
+          <label>Client Contact</label>
+          <input type="tel" name="contact" required>
         </div>
 
         <div class="field">
@@ -97,21 +104,19 @@
           <input type="email" name="email" required>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Total</label>
-            <input type="number" name="total" required>
-          </div>
+        <div class="field">
+          <label>Total</label>
+          <input type="number" name="total" required>
+        </div>
 
-          <div class="field">
-            <label>AV</label>
-            <input type="number" name="av" required>
-          </div>
+        <div class="field">
+          <label>AV</label>
+          <input type="number" name="av" required>
+        </div>
 
-          <div class="field">
-            <label>IC</label>
-            <input type="number" name="ic" required>
-          </div>
+        <div class="field">
+          <label>IC</label>
+          <input type="number" name="ic" required>
         </div>
 
         <div class="field">
@@ -121,106 +126,165 @@
 
         <div class="field">
           <label>Remark</label>
-          <textarea name="remark" rows="3" required></textarea>
+          <textarea name="remark"></textarea>
         </div>
 
       </form>
     </div>
 
-    <!-- ===== CLIENT FORM ===== -->
+    <!-- ================= CLIENT SIDE ================= -->
     <div class="section">
       <h3>As Per Client</h3>
 
-      <form id="clientForm">
+      <form id="clientForm" autocomplete="off">
 
-        <div class="field">
+        <!-- COPY FIELD TEMPLATE -->
+        
+        <!-- RM -->
+        <div class="field copy-field">
           <label>RM Name</label>
-          <input type="text" name="rmName" required>
+          <div class="copy-wrapper">
+            <select name="rmName" required>
+              <option value="">Select RM</option>
+              <option>RM 1</option>
+              <option>RM 2</option>
+              <option>RM 3</option>
+              <option>RM 4</option>
+              <option>RM 5</option>
+              <option>RM 6</option>
+              <option>RM 7</option>
+            </select>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Tower</label>
+        <!-- Tower -->
+        <div class="field copy-field">
+          <label>Tower</label>
+          <div class="copy-wrapper">
             <select class="tower" name="tower" required>
               <option value="">Select</option>
               <option value="TAPI">TAPI</option>
               <option value="AMAZON">AMAZON</option>
               <option value="DANUBE">DANUBE</option>
             </select>
-          </div>
-
-          <div class="field">
-            <label>Wing</label>
-            <select class="wing" name="wing" required disabled>
-              <option value="">Select</option>
-            </select>
+            <button type="button" class="copy-btn">↺</button>
           </div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Unit No.</label>
-            <input type="text" name="unit" required>
+        <!-- Wing -->
+        <div class="field copy-field">
+          <label>Wing</label>
+          <div class="copy-wrapper">
+            <select class="wing" name="wing" required disabled>
+              <option value="">Select</option>
+            </select>
+            <button type="button" class="copy-btn">↺</button>
           </div>
+        </div>
 
-          <div class="field">
-            <label>Type</label>
+        <!-- Unit -->
+        <div class="field copy-field">
+          <label>Unit No.</label>
+          <div class="copy-wrapper">
+            <input type="text" name="unit" required>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
+        </div>
+
+        <!-- Type -->
+        <div class="field copy-field">
+          <label>Type</label>
+          <div class="copy-wrapper">
             <select name="type" required>
               <option value="">Select</option>
               <option>1 BHK</option>
               <option>2 BHK</option>
               <option>3 BHK</option>
             </select>
+            <button type="button" class="copy-btn">↺</button>
           </div>
         </div>
 
-        <div class="field">
+        <!-- Booking Date -->
+        <div class="field copy-field">
           <label>Booking Date</label>
-          <input type="date" name="bookingDate" required>
+          <div class="copy-wrapper">
+            <input type="date" name="bookingDate" required>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Applicant Name</label>
+        <!-- Applicant -->
+        <div class="field copy-field">
+          <label>Applicant Name</label>
+          <div class="copy-wrapper">
             <input type="text" name="applicantName" required>
+            <button type="button" class="copy-btn">↺</button>
           </div>
+        </div>
 
-          <div class="field">
-            <label>Client Contact</label>
+        <!-- Contact -->
+        <div class="field copy-field">
+          <label>Client Contact</label>
+          <div class="copy-wrapper">
             <input type="tel" name="contact" required>
+            <button type="button" class="copy-btn">↺</button>
           </div>
         </div>
 
-        <div class="field">
+        <!-- Email -->
+        <div class="field copy-field">
           <label>Email ID</label>
-          <input type="email" name="email" required>
+          <div class="copy-wrapper">
+            <input type="email" name="email" required>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Total</label>
+        <!-- Total -->
+        <div class="field copy-field">
+          <label>Total</label>
+          <div class="copy-wrapper">
             <input type="number" name="total" required>
+            <button type="button" class="copy-btn">↺</button>
           </div>
+        </div>
 
-          <div class="field">
-            <label>AV</label>
+        <!-- AV -->
+        <div class="field copy-field">
+          <label>AV</label>
+          <div class="copy-wrapper">
             <input type="number" name="av" required>
+            <button type="button" class="copy-btn">↺</button>
           </div>
+        </div>
 
-          <div class="field">
-            <label>IC</label>
+        <!-- IC -->
+        <div class="field copy-field">
+          <label>IC</label>
+          <div class="copy-wrapper">
             <input type="number" name="ic" required>
+            <button type="button" class="copy-btn">↺</button>
           </div>
         </div>
 
-        <div class="field">
+        <!-- Payment -->
+        <div class="field copy-field">
           <label>Payment Plan</label>
-          <input type="text" name="paymentPlan" required>
+          <div class="copy-wrapper">
+            <input type="text" name="paymentPlan" required>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
         </div>
 
-        <div class="field">
+        <!-- Remark -->
+        <div class="field copy-field">
           <label>Remark</label>
-          <textarea name="remark" rows="3" required></textarea>
+          <div class="copy-wrapper">
+            <textarea name="remark"></textarea>
+            <button type="button" class="copy-btn">↺</button>
+          </div>
         </div>
 
       </form>
@@ -228,9 +292,8 @@
 
   </div>
 
-  <!-- ===== ONE GLOBAL SAVE BUTTON ===== -->
   <div class="actions">
-    <button id="saveAll">Save Rectification</button>
+    <button id="saveAll" type="button">Save Rectification</button>
   </div>
 
 </div>
@@ -238,10 +301,9 @@
 <script src="rectification.js"></script>
 
 <script>
-  // Force Booking ID uppercase
-  document.getElementById("bookingId").addEventListener("input", function () {
-    this.value = this.value.toUpperCase();
-  });
+document.getElementById("bookingId").addEventListener("input", function () {
+  this.value = this.value.toUpperCase();
+});
 </script>
 
 </body>
