@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function populateWings(towerValue, selectedWing = "") {
-
     wingSelect.innerHTML = '<option value="">Select</option>';
     wingSelect.disabled = true;
 
@@ -43,9 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     wingSelect.disabled = false;
 
-    if (selectedWing) {
-      wingSelect.value = selectedWing;
-    }
+    if (selectedWing) wingSelect.value = selectedWing;
   }
 
   towerSelect.addEventListener("change", function () {
@@ -104,9 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  if (searchBtn) {
-    searchBtn.addEventListener("click", searchBooking);
-  }
+  searchBtn?.addEventListener("click", searchBooking);
 
   // =====================================
   // MULTIPLE PAYMENT SYSTEM
@@ -181,7 +176,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     paymentsContainer.appendChild(div);
 
-    // 🔥 Enable / Disable Logic
     const modeSelect = div.querySelector(".mode-select");
     const paymentMethodSelect = div.querySelector(".payment-method-select");
 
@@ -195,9 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (addPaymentBtn) {
-    addPaymentBtn.addEventListener("click", addPaymentBlock);
-  }
+  addPaymentBtn?.addEventListener("click", addPaymentBlock);
 
   // =====================================
   // FORM SUBMIT
@@ -218,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const baseData = new FormData(form);
 
-      // 1️⃣ SAVE VISIT
+      // SAVE VISIT
       baseData.append("sheet", "Client_Visit");
 
       const visitResponse = await fetch(WEB_APP_URL, {
@@ -233,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Visit save failed");
       }
 
-      // 2️⃣ SAVE PAYMENTS
+      // SAVE PAYMENTS
       if (paymentSelect.value === "Received") {
 
         for (let i = 1; i <= paymentCount; i++) {
@@ -254,6 +246,9 @@ document.addEventListener("DOMContentLoaded", function () {
           paymentData.append("mode", baseData.get(`mode_${i}`));
           paymentData.append("paymentMethod", baseData.get(`paymentMethod_${i}`));
           paymentData.append("remark", baseData.get(`remark_${i}`));
+
+          // ✅ SOURCE FROM VISIT FORM (ONLY ONCE)
+          paymentData.append("source", baseData.get("source"));
 
           await fetch(WEB_APP_URL, {
             method: "POST",
