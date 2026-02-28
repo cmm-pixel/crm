@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Element references
   // =============================
   const form = document.getElementById("paymentForm");
-  const submitBtn = form.querySelector("button");
+  const submitBtn = document.getElementById("submitBtn");
 
   const bookingInput = document.getElementById("bookingId");
   const searchBtn = document.getElementById("searchBtn");
@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const modeSelect = document.getElementById("mode");
   const paymentMethodSelect = document.getElementById("paymentMethod");
+
+  // ✅ NEW SOURCE DROPDOWN
+  const sourceSelect = document.getElementById("source");
 
   const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxtlqg1g6RIlnzEtuBQa3fnnQVb-1ne2Ofu9ymnDr2r5OWbBaL4tXZ_-RsNh4Mnyaji/exec";
 
@@ -72,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     statusText.textContent = "Searching...";
     statusText.style.color = "#555";
-
     searchBtn.disabled = true;
 
     fetch(WEB_APP_URL + "?bookingId=" + encodeURIComponent(bookingId))
@@ -136,6 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const formData = new FormData(form);
+
+    // Sheet name
     formData.append("sheet", "Payment_Record");
 
     submitBtn.disabled = true;
@@ -152,9 +156,16 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Payment record saved successfully");
 
           form.reset();
+
           wingSelect.innerHTML = '<option value="">Select</option>';
           wingSelect.disabled = true;
           paymentMethodSelect.disabled = true;
+
+          // ✅ Reset source
+          if (sourceSelect) {
+            sourceSelect.value = "";
+          }
+
           statusText.textContent = "";
           return;
         }
